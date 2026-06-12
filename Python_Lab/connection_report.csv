@@ -1,0 +1,4 @@
+Timestamp,Device,Site,IP Address,Status,Message
+2026-06-11 17:43:44,R1,192.168.10.1,FAILED,BaseConnection.__init__() got an unexpected keyword argument 'site'
+2026-06-11 17:43:44,R2,192.168.10.2,FAILED,BaseConnection.__init__() got an unexpected keyword argument 'site'
+2026-06-11 17:43:44,R3,192.168.10.3,FAILED,BaseConnection.__init__() got an unexpected keyword argument 'site'

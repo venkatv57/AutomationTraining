@@ -1,0 +1,15 @@
+- name: Configure interface on Cisco Router
+  hosts: Routers
+  gather_facts: yes
+
+  tasks:
+  - name: Configure FastEthernet2/0
+    cisco.ios.ios_config:
+     parents: interface FastEthernet2/0
+     lines:
+      - ip address 192.168.40.1 255.255.255.0
+      - no shutdown
+
+  - name: Save configuration
+    cisco.ios.ios_config:
+     save_when: modified

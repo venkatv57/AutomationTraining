@@ -1,0 +1,11 @@
+- name: Configure Range of Interfaces
+  hosts: Routers
+  gather_facts: no
+
+  tasks:
+   - name: Configure Multiple Interface Description
+     cisco.ios.ios_config:
+      lines:
+       - interface range FastEthernet1/0 - 1
+       - description Configured by VV
+       - no shutdown

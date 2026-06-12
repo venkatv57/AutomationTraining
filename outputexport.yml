@@ -1,0 +1,16 @@
+- name: Export Router IP Configuration
+  hosts: Routers
+  gather_facts: false
+
+  tasks:
+    - name: Run show ip interface brief on the router
+      cisco.ios.ios_command:
+        commands:
+          - show ip interface brief
+      register: router_output
+
+    - name: Save the output to a local text file
+      ansible.builtin.copy:
+        content: "{{ router_output.stdout[0] }}"
+        dest: "./{{ inventory_hostname }}_ipconfig.txt"
+      delegate_to: localhost

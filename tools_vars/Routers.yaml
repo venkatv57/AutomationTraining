@@ -1,0 +1,36 @@
+- name: Baseline Deployment
+  hosts: routers
+  gather_facts: no
+
+  tasks:
+
+  - name: Configure Hostname
+    cisco.ios.ios_config:
+      lines:
+        - hostname "{{ inventory_hostname }}"
+
+  - name: Configure Banner
+    cisco.ios.ios_config:
+      lines:
+        - banner motd # Unauthorized access prohibited #
+
+  - name: Configure Domain
+    cisco.ios.ios_config:
+      lines:
+        - ip domain-name {{ domain_name }}
+
+  - name: Configure SSH
+    cisco.ios.ios_config:
+      lines:
+        - crypto key generate rsa modulus 1024
+        - ip ssh version 2
+
+  - name: Configure NTP
+    cisco.ios.ios_config:
+      lines:
+        - ntp server {{ ntp_server }}
+
+  - name: Configure Syslog
+    cisco.ios.ios_config:
+      lines:
+        - logging {{ syslog_server }}
